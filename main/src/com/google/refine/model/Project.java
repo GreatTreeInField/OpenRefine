@@ -253,7 +253,32 @@ public class Project {
         columnModel.update();
         recordModel.update(this);
     }
-    
+
+    public void flushOverlayModelsOnProjectChange(){
+        synchronized (overlayModels){
+            for (OverlayModel overlayModel : overlayModels.values()) {
+                try {
+                    overlayModel.flushOnProjectChange();
+                } catch (Exception e) {
+                    logger.warn("Error flushing overlay model after project's change", e);
+                }
+            }
+        }
+    }
+
+    public void flushOverlayModelsOnColumnChange(String columnName){
+        synchronized (overlayModels){
+            for (OverlayModel overlayModel : overlayModels.values()) {
+                try {
+                    overlayModel.flushOnColumnChange(columnName);
+                } catch (Exception e) {
+                    logger.warn("Error flushing overlay model after column's change", e);
+                }
+            }
+        }
+    }
+
+
     //wrapper of processManager variable to allow unit testing
     //TODO make the processManager variable private, and force all calls through this method
     public ProcessManager getProcessManager() {

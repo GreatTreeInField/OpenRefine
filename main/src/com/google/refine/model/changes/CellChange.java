@@ -64,6 +64,7 @@ public class CellChange implements Change {
         
         Column column = project.columnModel.getColumnByCellIndex(cellIndex);
         column.clearPrecomputes();
+        project.flushOverlayModelsOnColumnChange(column.getName());
         ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, column.getName());
     }
 
@@ -73,6 +74,7 @@ public class CellChange implements Change {
         
         Column column = project.columnModel.getColumnByCellIndex(cellIndex);
         column.clearPrecomputes();
+        project.flushOverlayModelsOnColumnChange(column.getName());
         ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, column.getName());
     }
     

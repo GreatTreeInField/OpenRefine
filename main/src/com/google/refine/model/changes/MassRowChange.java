@@ -63,6 +63,7 @@ public class MassRowChange implements Change {
             
             project.columnModel.clearPrecomputes();
             ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProject(project.id);
+            project.flushOverlayModelsOnProjectChange();
             
             project.update();
         }

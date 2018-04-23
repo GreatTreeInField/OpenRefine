@@ -94,7 +94,9 @@ public class MassCellChange implements Change {
             if (_commonColumnName != null) {
                 Column column = project.columnModel.getColumnByName(_commonColumnName);
                 column.clearPrecomputes();
-                ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, _commonColumnName);
+                project.flushOverlayModelsOnColumnChange(_commonColumnName);
+                ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,
+                        _commonColumnName);
             }
             
             if (_updateRowContextDependencies) {
@@ -115,7 +117,9 @@ public class MassCellChange implements Change {
             if (_commonColumnName != null) {
                 Column column = project.columnModel.getColumnByName(_commonColumnName);
                 column.clearPrecomputes();
-                ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, _commonColumnName);
+                project.flushOverlayModelsOnColumnChange(_commonColumnName);
+                ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,
+                        _commonColumnName);
             }
             
             if (_updateRowContextDependencies) {

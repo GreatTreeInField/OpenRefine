@@ -109,7 +109,9 @@ public class ReconChange extends MassCellChange {
             column.setReconStats(_newReconStats);
             
             column.clearPrecomputes();
-            ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, _commonColumnName);
+            project.flushOverlayModelsOnColumnChange(_commonColumnName);
+            ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,
+                    _commonColumnName);
         }
     }
     
@@ -123,7 +125,9 @@ public class ReconChange extends MassCellChange {
             column.setReconStats(_oldReconStats);
             
             column.clearPrecomputes();
-            ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, _commonColumnName);
+            project.flushOverlayModelsOnColumnChange(_commonColumnName);
+            ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,
+                    _commonColumnName);
         }
     }
     

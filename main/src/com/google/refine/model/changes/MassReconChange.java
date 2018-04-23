@@ -84,8 +84,9 @@ public class MassReconChange implements Change {
                             // skip the flushing if already done
                             String columnName = project.columnModel.getColumnByCellIndex(c).getName();
                             if (!flushedColumn.contains(columnName)) {
-                                ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, 
-                                    columnName);
+                                project.flushOverlayModelsOnColumnChange(columnName);
+                                ProjectManager.singleton.getInterProjectModel()
+                                        .flushJoinsInvolvingProjectColumn(project.id, columnName);
                                 flushedColumn.add(columnName);
                             }
                             

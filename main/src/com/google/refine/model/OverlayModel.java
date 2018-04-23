@@ -41,4 +41,8 @@ public interface OverlayModel extends Jsonizable {
     public void onAfterSave(Project project);
     
     public void dispose(Project project);
+
+    public void flushOnProjectChange();
+
+    public void flushOnColumnChange(String columnName);
 }

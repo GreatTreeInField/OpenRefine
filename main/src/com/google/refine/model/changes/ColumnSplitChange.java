@@ -141,7 +141,8 @@ public class ColumnSplitChange extends ColumnChange {
                 for (int i = 1; i < _columnNames.size(); i++) {
                     project.columnModel.allocateNewCellIndex();
                 }
-                
+
+                project.flushOverlayModelsOnColumnChange(_columnName);
                 ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, _columnName);
                 _column = project.columnModel.getColumnByName(_columnName);
                 _columnIndex = project.columnModel.getColumnIndexByName(_columnName);
@@ -257,6 +258,7 @@ public class ColumnSplitChange extends ColumnChange {
             
             for (int i = 0; i < _columnNames.size(); i++) {
                 project.columnModel.columns.remove(_columnIndex + 1);
+                project.flushOverlayModelsOnColumnChange(_columnNames.get(i));
                 ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id, _columnNames.get(i));
             }
             
